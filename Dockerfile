@@ -4,8 +4,8 @@ LABEL org.opencontainers.image.authors="leapkh@yahoo.com"
 
 WORKDIR /leapkh
 
-ENV ANDROID_COMPILE_SDK=33
-ENV ANDROID_BUILD_TOOLS=33.0.0
+ENV ANDROID_COMPILE_SDK=30
+ENV ANDROID_BUILD_TOOLS=30.0.3
 ENV ANDROID_CMDLINE_TOOLS=8512546_latest
 
 # Utility packages
