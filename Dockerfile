@@ -9,7 +9,7 @@ ENV ANDROID_BUILD_TOOLS=34.0.0
 ENV ANDROID_CMDLINE_TOOLS=8512546_latest
 
 # Utility packages
-RUN apt-get --quiet update --yes
+# RUN apt-get --quiet update --yes
 RUN apt-get --quiet install --yes wget tar unzip lib32stdc++6
 RUN apt-get -qq install curl jq
 
