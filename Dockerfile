@@ -1,15 +1,15 @@
-FROM openjdk:17-jdk
+FROM openjdk:11-jdk
 
 LABEL org.opencontainers.image.authors="leapkh@yahoo.com"
 
 WORKDIR /leapkh
 
-ENV ANDROID_COMPILE_SDK=34
-ENV ANDROID_BUILD_TOOLS=34.0.0
+ENV ANDROID_COMPILE_SDK=30
+ENV ANDROID_BUILD_TOOLS=30.0.3
 ENV ANDROID_CMDLINE_TOOLS=8512546_latest
 
 # Utility packages
-# RUN apt-get --quiet update --yes
+RUN apt-get --quiet update --yes
 RUN apt-get --quiet install --yes wget tar unzip lib32stdc++6
 RUN apt-get -qq install curl jq
 
