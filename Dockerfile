@@ -12,5 +12,6 @@ RUN unzip -q commandlinetools.zip -d /sdk/cmdline-tools
 RUN mv /sdk/cmdline-tools/cmdline-tools /sdk/cmdline-tools/latest
 RUN rm commandlinetools.zip
 ENV PATH="/sdk/cmdline-tools/latest/bin:/sdk/platform-tools:$PATH"
+ENV ANDROID_SDK_ROOT=/sdk
 RUN echo y | sdkmanager "platforms;android-${ANDROID_SDK}" >/dev/null
 RUN echo y | sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
