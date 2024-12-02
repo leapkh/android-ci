@@ -6,7 +6,7 @@ ENV ANDROID_SDK=35
 ENV ANDROID_BUILD_TOOLS=35.0.0
 ENV ANDROID_CMDLINE_TOOLS=9477386_latest
 
-RUN - wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMDLINE_TOOLS}.zip -O commandlinetools.zip
+RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMDLINE_TOOLS}.zip -O commandlinetools.zip
 RUN mkdir -p /sdk/cmdline-tools
 RUN unzip -q commandlinetools.zip -d /sdk/cmdline-tools
 RUN mv /sdk/cmdline-tools/cmdline-tools /sdk/cmdline-tools/latest
