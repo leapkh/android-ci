@@ -1,27 +1,16 @@
-FROM openjdk:11-jdk
+FROM gradle:jdk17
 
 LABEL org.opencontainers.image.authors="leapkh@yahoo.com"
 
-WORKDIR /leapkh
+ENV ANDROID_SDK=35
+ENV ANDROID_BUILD_TOOLS=35.0.0
+ENV ANDROID_CMDLINE_TOOLS=9477386_latest
 
-ENV ANDROID_COMPILE_SDK=30
-ENV ANDROID_BUILD_TOOLS=30.0.3
-ENV ANDROID_CMDLINE_TOOLS=8512546_latest
-
-# Utility packages
-RUN apt-get --quiet update --yes
-RUN apt-get --quiet install --yes wget tar unzip lib32stdc++6
-RUN apt-get -qq install curl jq
-
-# Android SDK
-RUN wget --quiet --output-document=cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMDLINE_TOOLS}.zip
-RUN mkdir -p android-sdk/cmdline-tools
-RUN unzip -d android-sdk/cmdline-tools cmdline-tools.zip
-RUN mv android-sdk/cmdline-tools/cmdline-tools android-sdk/cmdline-tools/latest
-ENV ANDROID_SDK_ROOT=/leapkh/android-sdk
-RUN echo y | android-sdk/cmdline-tools/latest/bin/sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" >/dev/null
-RUN echo y | android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" >/dev/null
-RUN echo y | android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
-ENV PATH=$PATH:/leapkh/android-sdk/platform-tools/
-RUN yes | android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
-ENV GRADLE_USER_HOME=/leapkh/.gradle
+RUN - wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMDLINE_TOOLS}.zip -O commandlinetools.zip
+RUN mkdir -p /sdk/cmdline-tools
+RUN unzip -q commandlinetools.zip -d /sdk/cmdline-tools
+RUN mv /sdk/cmdline-tools/cmdline-tools /sdk/cmdline-tools/latest
+RUN rm commandlinetools.zip
+ENV PATH="/sdk/cmdline-tools/latest/bin:/sdk/platform-tools:$PATH"
+RUN echo y | sdkmanager "platforms;android-${ANDROID_SDK}" >/dev/null
+RUN echo y | sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
