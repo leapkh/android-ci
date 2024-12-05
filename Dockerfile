@@ -15,3 +15,4 @@ ENV PATH="/sdk/cmdline-tools/latest/bin:/sdk/platform-tools:$PATH"
 ENV ANDROID_SDK_ROOT=/sdk
 RUN echo y | sdkmanager "platforms;android-${ANDROID_SDK}" >/dev/null
 RUN echo y | sdkmanager "build-tools;${ANDROID_BUILD_TOOLS}" >/dev/null
+RUN echo y | sdkmanager "platform-tools" >/dev/null
