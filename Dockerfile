@@ -2,8 +2,8 @@ FROM gradle:jdk17
 
 LABEL org.opencontainers.image.authors="leapkh@yahoo.com"
 
-ENV ANDROID_SDK=35
-ENV ANDROID_BUILD_TOOLS=35.0.0
+ENV ANDROID_SDK=34
+ENV ANDROID_BUILD_TOOLS=34.0.0
 ENV ANDROID_CMDLINE_TOOLS=9477386_latest
 
 RUN wget -q https://dl.google.com/android/repository/commandlinetools-linux-${ANDROID_CMDLINE_TOOLS}.zip -O commandlinetools.zip
